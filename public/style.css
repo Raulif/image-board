@@ -1,0 +1,19 @@
+#main {
+    width: 90%;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(5,  1fr);
+    grid-template-rows: 300px 300px 300px;
+    grid-auto-flow: row;
+}
+
+.image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 1px dotted #84ffff;
+
+}
+/*
+.image-container {
+}*/

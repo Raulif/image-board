@@ -3,14 +3,31 @@
     <head>
         <meta charset="utf-8">
         <title>Awesome Image Board</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
+
         <div id="main">
         </div>
+        <template id="uploadset">
+
+            <div class="uploadset">
+                <input type="file">
+                <button type="submit" id="uploadbutton" name="button">Upload!</button>
+            </div>
+
+        </template>
         <template id="imagePannel">
+            <div id="uploaddiv">
+
+            </div>
             {{#each images}}
-                <img type="image" src="https://s3.amazonaws.com/spicedling/{{this.image}}" alt="">
+            <div class="image-container">
+                <img class="image" type="image" src="https://s3.amazonaws.com/raulsbucket/{{this.image}}" alt="">
+                <h4>{{this.title}}</h4>
+            </div>
             {{/each}}
+
         </template>
 
         <script src="/js/handlebars.min.js"></script>
