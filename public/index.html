@@ -7,28 +7,71 @@
     </head>
     <body>
 
-        <div id="main">
-        </div>
+<!--:::::::::::: UPLOAD TEMPLATE ::::::::::::::::-->
+
+
         <template id="uploadset">
 
+
             <div class="uploadset">
+                <input type="text" name="username" placeholder="username">
+                <input type="text" name="imgtitle" placeholder="image title">
+                <input type="text" name="imgdescription" placeholder="image description">
                 <input type="file">
                 <button type="submit" id="uploadbutton" name="button">Upload!</button>
             </div>
 
         </template>
-        <template id="imagePannel">
-            <div id="uploaddiv">
 
-            </div>
+
+<!--:::::::::::: GALLERY TEMPLATE ::::::::::::::::-->
+
+
+<!-- 'main' contains theuploaded pictures -->
+        <div id="main"></div>
+
+        <template id="gallery">
+            <div id="uploadDiv"></div>
+
+
             {{#each images}}
-            <div class="image-container">
-                <img class="image" type="image" src="https://s3.amazonaws.com/raulsbucket/{{this.image}}" alt="">
-                <h4>{{this.title}}</h4>
+
+            <div class="imagecontainer">
+                <a href="#images/{{this.id}}">
+                    <img class="image" type="image" src="https://s3.amazonaws.com/raulsbucket/{{this.image}}" imageid="{{this.id}}" alt="">
+                </a>
+                <p>{{this.title}}</p>
             </div>
+
             {{/each}}
 
         </template>
+
+<!--:::::::::: SINGLE IMAGE TEMPLATE :::::::::::::-->
+
+
+<!-- 'singleimagecontainer' contains the selected picture -->
+        <div id="singleimagecontainer"></div>
+
+        <template id="singleimagetemplate">
+
+            <img id="singleimage" src="https://s3.amazonaws.com/raulsbucket/{{image.image}}" alt="">
+            <input id="commentfield" type="text" name="usercomment" placeholder="enter something nice">
+            <button id="sendcomment" type="button" name="commentbutton">Send</button>
+        </template>
+
+<!--:::::::::: PAST COMMENTS TEMPLATE ::::::::::::-->
+
+        <template id="commenttemplate">
+            <div id="pastcomments">
+                {{comments}}
+            </div>
+
+        </template>
+
+
+<!--:::::::::::::: SCRIPT FILES :::::::::::::::::-->
+
 
         <script src="/js/handlebars.min.js"></script>
         <script src="/js/jquery-3.1.1.min.js"></script>
