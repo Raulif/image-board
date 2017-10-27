@@ -71,38 +71,30 @@ app.get('/home', (req, res) => {
 app.get('/images/:id', (req, res) => {
 
     var id = req.params.id
-    console.log(id);
     // var imageid = req.params.imageid
-    const qShowImage = `SELECT image, id FROM images WHERE id = $1`;
+    const qShowImage = `SELECT images.image AS image, images.id AS image_id, images.title AS image_title, images.description AS image_description, comments.comment_text AS comment_text, comments.username AS user_name FROM images FULL JOIN comments ON images.id = comments.image_id WHERE images.id = $1`;
     db.query(qShowImage, [id]).then((results) => {
-        console.log(results.rows[0]);
         var image = results.rows[0]
+        var qResults = results.rows
         res.json({
-            image: image
+            qResults: qResults,
+            image: image,
         })
     }).catch(err => console.log(err));
 })
 
 
-app.post('/newcomment', uploader.single('comment'), function(req, res) {
-    // If nothing went wrong the file is already in the uploads directory
+app.post('/postcomment', function(req, res) {
 
-    if(req.file) {
-        toS3(req.file)
-        .then(function(){
-            //only after this, do the insert query to DB
-            const qInsertImage = `INSERT INTO images (image, username, title, description) VALUES ($1, $2, $3, $4)`
+    const qInsertComment = `INSERT INTO comments (image_id, username, comment_text) VALUES ($1, $2, $3)`
 
-            const params = [req.file.filename, req.body.username, req.body.imgtitle, req.body.imgdescription]
+    const params = [req.body.imageId, req.body.commentuser, req.body.comment]
 
-            return db.query(qInsertImage, params).then(()=> {
-                res.json({success: true})
-            })
-        })
-        .catch(err => res.json({success: false}));
-    } else {
-        res.json({success: false})
-    }
+    return db.query(qInsertComment, params).then(()=> {
+        res.json({success: true})
+
+    }).catch(err => res.json({success: false}));
+
 });
 
 app.listen(8080, () => {console.log('listening')})

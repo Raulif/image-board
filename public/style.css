@@ -33,15 +33,33 @@ flex-wrap: wrap;
     position: absolute;
 }
 
-#comment {
-    width: 250px;
-    height: 50px;
-    align-self: flex-end;
+#comment{
+    display: flex;
+    float: left;
+
 }
 
-#commentbutton {
+#commentuser{
+    width: 150px;
+    height: 40px;
+    z-index: 10;
+}
+
+#commentfield {
+    width: 250px;
+    height: 50px;
+    z-index: 10;
+}
+
+#sendcommentbtn {
     width: 50px;
     height: 50px;
-    align-self: flex-end;
+    z-index: 10;
+}
 
+#pastcomment {
+    float: right;
+    width: 250px;
+    height: 500px;
+    color: black;
 }

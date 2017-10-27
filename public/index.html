@@ -56,18 +56,29 @@
         <template id="singleimagetemplate">
 
             <img id="singleimage" src="https://s3.amazonaws.com/raulsbucket/{{image.image}}" alt="">
-            <input id="commentfield" type="text" name="usercomment" placeholder="enter something nice">
-            <button id="sendcomment" type="button" name="commentbutton">Send</button>
+            <div id="singleimagetitle">{{image.image_title}}</div>
+            <div id="singleimagedescription">{{image.image_description}}</div>
+
+            <!-- past comments -->
+            <ul id="pastcomments">
+                {{#each qResults}}
+                <li>{{this.user_name}} | {{this.comment_text}}</li>
+                {{/each}}
+            </ul>
+
         </template>
 
-<!--:::::::::: PAST COMMENTS TEMPLATE ::::::::::::-->
+<!--:::::::::: POST NEW COMMENT TEMPLATE ::::::::::::-->
+<div id="comment"></div>
 
-        <template id="commenttemplate">
-            <div id="pastcomments">
-                {{comments}}
-            </div>
+<template id="commenttemplate">
+    <input id="commentuser" type="text" name="commentuser" placeholder="user name">
+    <input id="commentfield" type="text" name="comment" placeholder="enter something nice">
+    <button id="sendcommentbtn" type="button" name="commentbutton">Send</button>
 
-        </template>
+</template>
+
+
 
 
 <!--:::::::::::::: SCRIPT FILES :::::::::::::::::-->

@@ -7,6 +7,22 @@
 });
     Handlebars.partials = Handlebars.templates
 
+//     var View = Backbone.View.extends({
+//         setElement: function() {
+//             if(this.el == '#main') {
+//                 $('#main').off()
+//             }
+//             return Backbone.View.prototype.setElements.apply(this, argument)
+//         }
+//     })
+//
+//
+// window.spiced = {
+//     models: {},
+//     views: {}
+//
+// }
+
 /*--------------------------------------------------------
 ::::::::::::::::::::    IMAGES    ::::::::::::::::::::::::
 --------------------------------------------------------*/
@@ -36,11 +52,10 @@
         },
         render: function() {
             $('#singleimagecontainer').html("");
-
+            $('#comment').html("")
             this.$el.html(Handlebars.templates.gallery(this.model.toJSON()))
         }
-        ,
-        events: {
+        ,events: {
             'click .image': function (e) {
                 return '#images/' + e.currentTarget.attributes.imageid.value
             }
@@ -104,7 +119,6 @@
 :::::::::::::::::::    SINGLE IMAGE    :::::::::::::::::
 --------------------------------------------------------*/
 
-
     var SingleImageModel = Backbone.Model.extend({
         initialize: function() {
             var model = this
@@ -121,8 +135,17 @@
             var view = this
             this.model.on('change', function(req, res) {
                 view.render();
+                var postCommentModel = new PostCommentModel({ imageId: view.model.id })
+                // postCommentModel.on('success', function(){
+                //     view.model.fetch()
+                // })
+                new PostCommentView({
+                    el: '#comment',
+                    model: postCommentModel
+                })
             })
         },
+
         render: function() {
             this.$el.html(Handlebars.templates.singleimagetemplate(this.model.toJSON()))
         }
@@ -130,82 +153,69 @@
 
 
 /*---------------------------------------------------------
-::::::::::::::::::::::    UPLOAD COMMENT   ::::::::::::::::
+::::::::::::::::::::::    POST COMMENT   ::::::::::::::::
 ---------------------------------------------------------*/
 
-        var UploadCommentModel = Backbone.Model.extend({
-            save: function() {
-                var model = this
-                var formData = new FormData();
-                formData.append('comment', this.get('comment'));
-                $.ajax({
-                    url: '/newcomment',
-                    method: 'POST',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function() {
-                        model.trigger('success')
-                    }
+    var PostCommentModel = Backbone.Model.extend({
+        url: '/postcomment',
+    })
+
+
+    var PostCommentView = Backbone.View.extend({
+        initialize: function() {
+            $('#sendcommentbtn').off()
+            var view = this
+            this.render();
+
+        },
+        render: function() {
+            this.$el.html(Handlebars.templates.commenttemplate())
+        },
+        events: {
+            'click #sendcommentbtn': function(){
+                console.log('something clicked');
+                var comment = $('input[name="comment"]').get(0).value
+                var commentuser = $('input[name="commentuser"]').get(0).value
+                this.model.set({
+                    comment: comment,
+                    commentuser: commentuser
                 })
-            },
-            url: function(){
-                return '/images/' + this.id
-            }
-        })
+                .save()
 
 
-        var UploadCommentView = Backbone.View.extend({
-            el: '#comment',
-            initialize: function() {
-                var view = this
-                this.render();
-            },
-            render: function() {
-                this.$el.value("")
-            },
-            events: {
-                'click #sendcomment': function(){
-                    var comment = $('input[name="commentfield"]').get(0).value
-                    this.model.set({
-                        comment: comment
-                    }).save()
-                }
+                $('#commentuser').val("")
+                $('#commentfield').val("")
             }
-        })
+        }
+    })
 
 
 /*---------------------------------------------------------
 ::::::::::::::::::::::::: ROUTER ::::::::::::::::::::::::::
 ---------------------------------------------------------*/
-
+    var main = $('#main')
 
     var Router = Backbone.Router.extend({
         routes: {
             'home': 'home',
             'images/:id': 'images',
-            'images/:id/newcomment': 'newcomment'
         },
 
         home: function() {
+            main.off()
             var imagesModel = new ImagesModel
             new ImagesView({
                 el: '#main',
                 model: imagesModel
             })
         },
+
         images: function(id) {
+            main.off()
             var singleImageModel = new SingleImageModel ({ id: id })
             new SingleImageView({
                 el: '#singleimagecontainer',
                 model: singleImageModel
-            })
-        },
-        newcomment: function(id) {
-            var uploadCommentModel = new UploadCommentModel ({id: id})
-            new UploadCommentView({
-                el: '#comment',
-                model: uploadCommentModel
             })
         }
     })
