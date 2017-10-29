@@ -443,7 +443,7 @@ body {
     vertical-align: text-top;
 }
 
-.passtcommenttext {
+.pastcommenttext {
     margin: 0;
     padding: 0;
     display: inline-block;
@@ -453,7 +453,6 @@ body {
     font-family: 'Playfair Display', serif;
     font-size: 12px;
     vertical-align: text-top;
-
 }
 .commentline{
     height: 1px;
@@ -462,4 +461,30 @@ body {
     margin: 0;
     padding: 0;
     margin-left: 15%;
+}
+
+@media screen and (max-width: 500px) {
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #headbar {
+        height: 65px;
+    }
+
+    #main {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    .image {
+        width: 100%;
+    }
 }
