@@ -58,6 +58,12 @@
         ,events: {
             'click .image': function (e) {
                 return '#images/' + e.currentTarget.attributes.imageid.value
+            },
+            'mouseenter .imagelinkcontainer': function() {
+                $('.galleryimagetitle').addClass('showimagetitle')
+            },
+            'mouseleave .galleryimagetitle': function() {
+                $('.galleryimagetitle').removeClass('showimagetitle')
             }
         }
     })
@@ -135,10 +141,11 @@
             var view = this
             this.model.on('change', function(req, res) {
                 view.render();
+                $('#comment').off()
                 var postCommentModel = new PostCommentModel({ imageId: view.model.id })
-                // postCommentModel.on('success', function(){
-                //     view.model.fetch()
-                // })
+                postCommentModel.on('change:success', function(){
+                    view.model.fetch()
+                })
                 new PostCommentView({
                     el: '#comment',
                     model: postCommentModel
@@ -148,6 +155,13 @@
 
         render: function() {
             this.$el.html(Handlebars.templates.singleimagetemplate(this.model.toJSON()))
+        },
+        events: {
+            'click #goback': function(e) {
+                e.preventDefault()
+                console.log('clicked on back');
+                location.hash = '#home'
+            }
         }
     })
 
@@ -157,7 +171,7 @@
 ---------------------------------------------------------*/
 
     var PostCommentModel = Backbone.Model.extend({
-        url: '/postcomment',
+        url: '/postcomment'
     })
 
 
@@ -166,7 +180,6 @@
             $('#sendcommentbtn').off()
             var view = this
             this.render();
-
         },
         render: function() {
             this.$el.html(Handlebars.templates.commenttemplate())

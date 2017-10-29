@@ -6,13 +6,44 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <div id="headbar">
+            <!-- <img id="logo" name="logo" src="./logo.png"> -->
+            <div id="uploadDiv">
+                <!-- THE 'UPLOAD TEMPLATE' GOES HERE-->
+            </div>
+        </div>
+        <div id="main">
+            <!--THE GRID GALLERY OF UPLOADED IMAGES GOES HERE -->
+        </div>
+        <div id="singleimagecontainer">
+            <!-- THE VIEW OF THE SELECTED PICTURE GOES HERE -->
+        </div>
+        <!-- <div id="comment">
+        --><!--THE INPUT BOX FOR NEW COMMENT GOES HERE--><!--
+        </div> -->
+
+<!--:::::::::::: GALLERY TEMPLATE ::::::::::::::::-->
+
+        <template id="gallery">
+
+            {{#each images}}
+
+            <div class="imagecontainer">
+
+                <p class="galleryimagetitle">{{this.title}}</p>
+                <a class="imagelinkcontainer" href="#images/{{this.id}}">
+                    <img class="image" type="image" src="https://s3.amazonaws.com/raulsbucket/{{this.image}}" imageid="{{this.id}}" alt="">
+                </a>
+            </div>
+
+            {{/each}}
+
+        </template>
+
 
 <!--:::::::::::: UPLOAD TEMPLATE ::::::::::::::::-->
 
-
         <template id="uploadset">
-
-
             <div class="uploadset">
                 <input type="text" name="username" placeholder="username">
                 <input type="text" name="imgtitle" placeholder="image title">
@@ -24,65 +55,43 @@
         </template>
 
 
-<!--:::::::::::: GALLERY TEMPLATE ::::::::::::::::-->
-
-
-<!-- 'main' contains theuploaded pictures -->
-        <div id="main"></div>
-
-        <template id="gallery">
-            <div id="uploadDiv"></div>
-
-
-            {{#each images}}
-
-            <div class="imagecontainer">
-                <a href="#images/{{this.id}}">
-                    <img class="image" type="image" src="https://s3.amazonaws.com/raulsbucket/{{this.image}}" imageid="{{this.id}}" alt="">
-                </a>
-                <p>{{this.title}}</p>
-            </div>
-
-            {{/each}}
-
-        </template>
 
 <!--:::::::::: SINGLE IMAGE TEMPLATE :::::::::::::-->
-
-
-<!-- 'singleimagecontainer' contains the selected picture -->
-        <div id="singleimagecontainer"></div>
+<!-- parent div is 'singleimagecontainer'-->
 
         <template id="singleimagetemplate">
-
+            <div id="goback">X</div>
             <img id="singleimage" src="https://s3.amazonaws.com/raulsbucket/{{image.image}}" alt="">
-            <div id="singleimagetitle">{{image.image_title}}</div>
+            <div class="imagebackground"></div>
+
+            <!-- <div id="singleimagetitle">{{image.image_title}}</div>
             <div id="singleimagedescription">{{image.image_description}}</div>
 
-            <!-- past comments -->
-            <ul id="pastcomments">
+        --><!-- past comments --><!--‚
+            <div id="pastcomments">
                 {{#each qResults}}
-                <li>{{this.user_name}} | {{this.comment_text}}</li>
+                    {{#if this.user_name}}
+                        <p>{{this.user_name}} said: {{this.comment_text}}</p>
+                    {{else}}
+                    <p></p>
+                    {{/if}}
                 {{/each}}
-            </ul>
+            </div> -->
 
         </template>
 
+
 <!--:::::::::: POST NEW COMMENT TEMPLATE ::::::::::::-->
-<div id="comment"></div>
 
-<template id="commenttemplate">
-    <input id="commentuser" type="text" name="commentuser" placeholder="user name">
-    <input id="commentfield" type="text" name="comment" placeholder="enter something nice">
-    <button id="sendcommentbtn" type="button" name="commentbutton">Send</button>
+        <template id="commenttemplate">
+            <input id="commentusername" type="text" name="commentuser" placeholder="user name">
+            <input id="commentfield" type="text" name="comment" placeholder="enter something nice">
+            <button id="sendcommentbtn" type="button" name="commentbutton">Send</button>
 
-</template>
-
-
+        </template>
 
 
 <!--:::::::::::::: SCRIPT FILES :::::::::::::::::-->
-
 
         <script src="/js/handlebars.min.js"></script>
         <script src="/js/jquery-3.1.1.min.js"></script>

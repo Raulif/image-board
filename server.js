@@ -48,7 +48,8 @@ app.post('/upload', uploader.single('imageFile', 'username', 'imgtitle', 'imgdes
 
             const params = [req.file.filename, req.body.username, req.body.imgtitle, req.body.imgdescription]
 
-            return db.query(qInsertImage, params).then(()=> {
+            return db.query(qInsertImage, params).then((results)=> {
+
                 res.json({success: true})
             })
         })
@@ -59,11 +60,14 @@ app.post('/upload', uploader.single('imageFile', 'username', 'imgtitle', 'imgdes
 });
 
 app.get('/home', (req, res) => {
-    const qShowImages = `SELECT image, id, title FROM images`;
+    const qShowImages = `SELECT image, id, title, created_at AS date FROM images`;
     db.query(qShowImages).then((results) => {
         var images = results.rows;
-        res.json({
-            images: images,
+        images = images.sort(function(a,b) {
+            return new Date(b.date) - new Date(a.date)
+        })
+        return res.json({
+            images: images
         })
     }).catch(err => console.log(err));
 })
@@ -74,8 +78,10 @@ app.get('/images/:id', (req, res) => {
     // var imageid = req.params.imageid
     const qShowImage = `SELECT images.image AS image, images.id AS image_id, images.title AS image_title, images.description AS image_description, comments.comment_text AS comment_text, comments.username AS user_name FROM images FULL JOIN comments ON images.id = comments.image_id WHERE images.id = $1`;
     db.query(qShowImage, [id]).then((results) => {
+
         var image = results.rows[0]
         var qResults = results.rows
+
         res.json({
             qResults: qResults,
             image: image,
@@ -85,16 +91,19 @@ app.get('/images/:id', (req, res) => {
 
 
 app.post('/postcomment', function(req, res) {
+    if(!!req.body.comment && !!req.body.commentuser) {
+        const qInsertComment = `INSERT INTO comments (image_id, username, comment_text) VALUES ($1, $2, $3)`
 
-    const qInsertComment = `INSERT INTO comments (image_id, username, comment_text) VALUES ($1, $2, $3)`
+        const params = [req.body.imageId, req.body.commentuser, req.body.comment]
 
-    const params = [req.body.imageId, req.body.commentuser, req.body.comment]
-
-    return db.query(qInsertComment, params).then(()=> {
-        res.json({success: true})
-
-    }).catch(err => res.json({success: false}));
-
+        return db.query(qInsertComment, params).then(()=> {
+            res.json({success: true})
+        }).catch(err => res.json({success: false}));
+    }
+    else {
+        console.log('missing username or comment text');
+        res.json({success: false})
+    }
 });
 
 app.listen(8080, () => {console.log('listening')})
