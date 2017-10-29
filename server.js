@@ -76,7 +76,7 @@ app.get('/images/:id', (req, res) => {
 
     var id = req.params.id
     // var imageid = req.params.imageid
-    const qShowImage = `SELECT images.image AS image, images.id AS image_id, images.title AS image_title, images.description AS image_description, comments.comment_text AS comment_text, comments.username AS user_name FROM images FULL JOIN comments ON images.id = comments.image_id WHERE images.id = $1`;
+    const qShowImage = `SELECT images.image AS image, images.id AS image_id, images.title AS image_title, images.description AS image_description, images.username AS image_username, comments.comment_text AS comment_text, comments.username AS user_name FROM images FULL JOIN comments ON images.id = comments.image_id WHERE images.id = $1`;
     db.query(qShowImage, [id]).then((results) => {
 
         var image = results.rows[0]

@@ -4,9 +4,15 @@
         <meta charset="utf-8">
         <title>Awesome Image Board</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <div id="headbar">
+            <a href="/#home"><i id="pagelogo" class="fa fa-camera-retro" aria-hidden="true"></i></a>
+            <div id="headtext">
+                <p id="pagetitle">The grey area</p>
+                <p id="pageclaim">Artistic bw images</p>
+            </div>
             <!-- <img id="logo" name="logo" src="./logo.png"> -->
             <div id="uploadDiv">
                 <!-- THE 'UPLOAD TEMPLATE' GOES HERE-->
@@ -17,13 +23,12 @@
         </div>
         <div id="singleimagecontainer">
             <!-- THE VIEW OF THE SELECTED PICTURE GOES HERE -->
+
         </div>
-        <!-- <div id="comment">
-        --><!--THE INPUT BOX FOR NEW COMMENT GOES HERE--><!--
-        </div> -->
 
 <!--:::::::::::: GALLERY TEMPLATE ::::::::::::::::-->
 
+<!--The gallery gets rendered inside 'main'-->
         <template id="gallery">
 
             {{#each images}}
@@ -45,11 +50,13 @@
 
         <template id="uploadset">
             <div class="uploadset">
-                <input type="text" name="username" placeholder="username">
-                <input type="text" name="imgtitle" placeholder="image title">
-                <input type="text" name="imgdescription" placeholder="image description">
-                <input type="file">
+                <p id="uploadheader">UPLOAD A NEW IMAGE</p>
+                <input id="uploadusername" type="text" name="username" placeholder="username">
+                <input id="uploadimgtitle" type="text" name="imgtitle" placeholder="image title">
+                <textarea id="uploadimgdesc" type="text" name="imgdescription" placeholder="image description"></textarea>
+                <input id="targetfile" type="file">
                 <button type="submit" id="uploadbutton" name="button">Upload!</button>
+                <div id="openuploadset">TOGGLE UPLOADER</div>
             </div>
 
         </template>
@@ -60,35 +67,66 @@
 <!-- parent div is 'singleimagecontainer'-->
 
         <template id="singleimagetemplate">
-            <div id="goback">X</div>
-            <img id="singleimage" src="https://s3.amazonaws.com/raulsbucket/{{image.image}}" alt="">
-            <div class="imagebackground"></div>
+            <div class="singleimageouterbox">
+                <img id="singleimage" src="https://s3.amazonaws.com/raulsbucket/{{image.image}}" alt="">
+            </div>
+            <div class="sidepannel">
+                <div id="goback">X</div>
 
-            <!-- <div id="singleimagetitle">{{image.image_title}}</div>
-            <div id="singleimagedescription">{{image.image_description}}</div>
+                <p class="sidetitle">PICTURE DETAILS</p>
 
-        --><!-- past comments --><!--‚
-            <div id="pastcomments">
-                {{#each qResults}}
-                    {{#if this.user_name}}
-                        <p>{{this.user_name}} said: {{this.comment_text}}</p>
-                    {{else}}
-                    <p></p>
-                    {{/if}}
-                {{/each}}
-            </div> -->
+                <div id="imagelablebox">
+                    <div id="singleimagetitle" class="imagelable"><span class="labletitle">Title: </span><span class="lablecontent">{{image.image_title}}</span></div>
+                    <div class="line"></div>
 
+                    <div id="singleimagedescription"  class="imagelable"><span class="labletitle">Description: </span><span class="lablecontent">{{image.image_description}}</span></div>
+                    <div class="line"></div>
+
+                    <div id="singleimageuser"  class="imagelable"><span class="labletitle">Uploaded by: </span><span class="lablecontent">{{image.image_username}}</span>
+                    </div>
+                </div>
+
+                <p class="sidetitle">COMMENTS</p>
+
+                <div class="commentgeneralbox">
+                    <p class="sidesubtitle">Add a comment:</p>
+
+                    <div id="comment">
+                        <!--THE INPUT BOX FOR NEW COMMENT GOES HERE-->
+                    </div>
+                    <p class="sidesubtitle">Past comments:</p>
+
+
+                    <!-- past comments -->
+                    <div id="pastcomments">
+                        {{#each qResults}}
+                            {{#if this.user_name}}
+                            <div class="individualpastcomment">
+                                <p class="pastcommentuser">{{this.user_name}}: </p><p class="passtcommenttext">  {{this.comment_text}}</p>
+                            </div>
+                            <div class="commentline"></div>
+                        {{else}}
+                        <p></p>
+                        {{/if}}
+                        {{/each}}
+                    </div>
+                </div>
+
+            </div>
         </template>
 
-
-<!--:::::::::: POST NEW COMMENT TEMPLATE ::::::::::::-->
+        <!--:::::::::: POST NEW COMMENT TEMPLATE ::::::::::::-->
 
         <template id="commenttemplate">
-            <input id="commentusername" type="text" name="commentuser" placeholder="user name">
-            <input id="commentfield" type="text" name="comment" placeholder="enter something nice">
-            <button id="sendcommentbtn" type="button" name="commentbutton">Send</button>
-
+            <div class="commentbox">
+                <input id="commentusername" type="text" name="commentuser" placeholder="user name">
+                <button id="sendcommentbtn" type="button" name="commentbutton">Send</button>
+                <input id="commentfield" type="text" name="comment" placeholder="enter comment">
+            </div>
         </template>
+
+
+
 
 
 <!--:::::::::::::: SCRIPT FILES :::::::::::::::::-->

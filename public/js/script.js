@@ -51,12 +51,15 @@
             })
         },
         render: function() {
-            $('#singleimagecontainer').html("");
-            $('#comment').html("")
+            $('#singleimagecontainer').removeClass('showcontainer').html("");
+            $('#comment').html({display: 'none'})
+            $('#main').css({filter: 'blur(0px)'})
             this.$el.html(Handlebars.templates.gallery(this.model.toJSON()))
         }
         ,events: {
             'click .image': function (e) {
+                $('#singleimagecontainer').addClass('showcontainer')
+                $('#main').css({filter: 'blur(3px)'})
                 return '#images/' + e.currentTarget.attributes.imageid.value
             },
             'mouseenter .imagelinkcontainer': function() {
@@ -116,6 +119,9 @@
                     imgtitle: imgtitle,
                     imgdescription: imgdescription
                 }).save()
+            },
+            'click #openuploadset': function(e) {
+                $('.uploadset').toggleClass('showuploader')
             }
         }
     })
@@ -161,6 +167,9 @@
                 e.preventDefault()
                 console.log('clicked on back');
                 location.hash = '#home'
+            },
+            'scroll #pastcomments': function(e) {
+                e.preventDefault()
             }
         }
     })
