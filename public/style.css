@@ -43,7 +43,7 @@ body {
     height: 35px;
 }
 
-#greytitle {
+.greytitle {
     color: #888888;
     padding: 0;
     margin: 0;
@@ -80,6 +80,7 @@ body {
 .imagecontainer{
     font-size: 0px;
     border-bottom: 1px solid #888888;
+    border-right: 1px solid #343434;
     border-left: 1px solid #888888;
     width: 100%;
 }
@@ -225,23 +226,22 @@ body {
 }
 
 #goback {
-    border: 1px dotted #FCE0DD;
+    background-color: #FCE0DD;
     border-radius: 50%;
-    font-size: 20px;
+    font-size: 21px;
     position: fixed;
     right: 0;
     top: 70px;
-    margin-right: 5px;
+    margin-right: 10px;
     z-index: 160;
     cursor: pointer;
-    color: #FCE0DD;
+    color: black;
     font-weight: bold;
     display: inline-block;
     height: 25px;
     width: 25px;
     text-align: center;
     padding: 0;
-    padding-top: 1px;
     font-family: 'Pathway Gothic One', sans-serif;
 
 }
@@ -263,6 +263,7 @@ body {
     display: inline-flex;
     vertical-align: top;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .sidetitle {
@@ -270,7 +271,7 @@ body {
     margin-bottom: 10px;
     padding: 0;
     display: block;
-    font-size: 20px;
+    font-size: 25px;
     color: white;
     text-shadow: 1px 1px 2px #343434;
     width: 60%;
@@ -406,13 +407,14 @@ body {
 #pastcomments {
     align-self: center;
     width: 97%;
-    height: 238px;
+    height: 59%;
     color: black;
     background-color: white;
     border-radius: 3px;
     overflow-y: scroll;
     padding-top: 5px;
     padding-bottom: 5px;
+    bottom: 0;
 }
 
 .individualpastcomment {
@@ -479,8 +481,8 @@ body {
     }
 
     #main {
-        display: grid;
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         width: 100%;
     }
 

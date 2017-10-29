@@ -113,7 +113,7 @@
                 var file = $('input[type="file"]').get(0).files[0];
                 var username = $('input[name="username"]').get(0).value
                 var imgtitle = $('input[name="imgtitle"]').get(0).value
-                var imgdescription = $('input[name="imgdescription"]').get(0).value
+                var imgdescription = $('textarea[name="imgdescription"]').get(0).value
                 this.model.set({
                     file: file,
                     username: username,
@@ -234,6 +234,7 @@
         },
 
         images: function(id) {
+            main.off()
             var singleImageModel = new SingleImageModel ({ id: id })
             new SingleImageView({
                 el: '#singleimagecontainer',
