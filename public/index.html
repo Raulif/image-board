@@ -5,13 +5,15 @@
         <title>Awesome Image Board</title>
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Cardo:400,700|Eczar:400,700|Pathway+Gothic+One|Playfair+Display:400,700" rel="stylesheet">
+
     </head>
     <body>
         <div id="headbar">
             <a href="/#home"><i id="pagelogo" class="fa fa-camera-retro" aria-hidden="true"></i></a>
             <div id="headtext">
-                <p id="pagetitle">The grey area</p>
-                <p id="pageclaim">Artistic bw images</p>
+                <p id="pagetitle">THE <span id="greytitle">GREY</span> AREA</p>
+                <p id="pageclaim">Casual moments of urban life in black and white</p>
             </div>
             <!-- <img id="logo" name="logo" src="./logo.png"> -->
             <div id="uploadDiv">
@@ -51,12 +53,12 @@
         <template id="uploadset">
             <div class="uploadset">
                 <p id="uploadheader">UPLOAD A NEW IMAGE</p>
-                <input id="uploadusername" type="text" name="username" placeholder="username">
+                <input id="uploadusername" type="text" name="username" placeholder="user name">
                 <input id="uploadimgtitle" type="text" name="imgtitle" placeholder="image title">
                 <textarea id="uploadimgdesc" type="text" name="imgdescription" placeholder="image description"></textarea>
                 <input id="targetfile" type="file">
                 <button type="submit" id="uploadbutton" name="button">Upload!</button>
-                <div id="openuploadset">TOGGLE UPLOADER</div>
+                <div id="toggleuploader">TOGGLE UPLOADER</div>
             </div>
 
         </template>

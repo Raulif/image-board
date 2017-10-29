@@ -53,12 +53,13 @@
         render: function() {
             $('#singleimagecontainer').removeClass('showcontainer').html("");
             $('#comment').html({display: 'none'})
-            $('#main').css({filter: 'blur(0px)'})
+            $('#main').css({filter: 'none'})
             this.$el.html(Handlebars.templates.gallery(this.model.toJSON()))
         }
         ,events: {
             'click .image': function (e) {
                 $('#singleimagecontainer').addClass('showcontainer')
+                $('.uploadset').css({transform: 'translateY(-90%)'})
                 $('#main').css({filter: 'blur(3px)'})
                 return '#images/' + e.currentTarget.attributes.imageid.value
             },
@@ -120,7 +121,7 @@
                     imgdescription: imgdescription
                 }).save()
             },
-            'click #openuploadset': function(e) {
+            'click #toggleuploader': function() {
                 $('.uploadset').toggleClass('showuploader')
             }
         }
@@ -233,7 +234,6 @@
         },
 
         images: function(id) {
-            main.off()
             var singleImageModel = new SingleImageModel ({ id: id })
             new SingleImageView({
                 el: '#singleimagecontainer',

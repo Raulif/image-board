@@ -3,40 +3,68 @@ body {
     padding: 0;
     box-sizing: border-box;
     overflow-x: hidden;
+    background-color: black
 }
 
 #headbar {
     width: 100%;
     height: 65px;
     background-color: #000000;
-    border-bottom: 1px solid #343434;
+    border-bottom: 1px dotted #343434;
     position: fixed;
     top: 0;
-    z-index: 100;
+    z-index: 40;
     padding: 0;
     margin: 0;
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
 }
+
+#headtext{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    margin-left: 20px;
+    height: 100%;
+}
+
 #pagetitle{
+    display: inline-block;
     padding: 0;
     margin: 0;
     color: white;
-    font-size: 20px;
+    font-size: 33px;
+    font-family: 'Cardo', serif;
+    font-weight: bold;
+    top: 0;
+    height: 35px;
+}
+
+#greytitle {
+    color: #888888;
+    padding: 0;
+    margin: 0;
 }
 
 #pageclaim {
+    display: inline-block;
     padding: 0;
     margin: 0;
     color: white;
     font-size: 20px;
+    font-family: 'Pathway Gothic One', sans-serif;
+
 }
 
 #pagelogo {
-    margin-top: 10px;
+    margin-top: 15px;
     margin-left: 20px;
     color: #888888;
     font-size: 35px;
+    height: 100%;
 }
 
 #main{
@@ -108,6 +136,8 @@ body {
     background-color: #FCE0DD;
     margin-bottom: 1px solid black;
     line-height: 62px;
+    font-family: 'Cardo', serif;
+    font-weight: bold;
 }
 
 .uploadset input {
@@ -120,18 +150,21 @@ body {
     font-size: 18px;
     border: none;
     border: 1px solid #888888;
+    font-family: 'Pathway Gothic One', sans-serif;
 }
 
 #uploadimgdesc {
     margin-left: 10px;
     margin-bottom: 10px;
     padding-left: 10px;
-    font-size: 15px;
+    font-size: 18px;
     width: 90%;
     height: 50px;
     resize: none;
     border: none;
     border: 1px solid #888888;
+    font-family: 'Pathway Gothic One', sans-serif;
+
 
 }
 
@@ -144,18 +177,20 @@ body {
 }
 
 #uploadbutton {
-    width: 50%;
+    width: 40%;
     height: 35px;
-    margin-left: 25%;
-    border: none;
+    margin-left: 30%;
+    border: 1px dotted #FCE0DD;
     border-radius: 10px;
     background-color: black;
     color: white;
-    font-size: 15px;
+    font-size: 20px;
     cursor: pointer;
+    font-family: 'Pathway Gothic One', sans-serif;
+
 }
 
-#openuploadset {
+#toggleuploader {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -166,9 +201,11 @@ body {
     height: 30px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    margin-top: 15px;
+    margin-top: 45px;
     cursor: pointer;
     border-top: 5px solid #FCE0DD;
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-weight: bold;
 }
 
 .showcontainer {
@@ -188,7 +225,7 @@ body {
 }
 
 #goback {
-    border: 1px dotted #888888;
+    border: 1px dotted #FCE0DD;
     border-radius: 50%;
     font-size: 20px;
     position: fixed;
@@ -205,6 +242,8 @@ body {
     text-align: center;
     padding: 0;
     padding-top: 1px;
+    font-family: 'Pathway Gothic One', sans-serif;
+
 }
 
 .singleimageouterbox {
@@ -228,14 +267,16 @@ body {
 
 .sidetitle {
     margin: 0;
-    margin-left: 10px;
     margin-bottom: 10px;
     padding: 0;
     display: block;
-    font-size: 15px;
+    font-size: 20px;
     color: white;
-    width: 80%;
+    text-shadow: 1px 1px 2px #343434;
+    width: 60%;
     text-align: center;
+    font-family: 'Pathway Gothic One', sans-serif;
+
 }
 
 
@@ -249,7 +290,7 @@ body {
     vertical-align: top;
     color: white;
     background-color: rgba(0, 0, 0, 0.8);
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     border-radius: 5px;
 }
 
@@ -267,15 +308,18 @@ body {
 }
 
 .labletitle {
+    padding-top: 1px;
     font-size: 17px;
     width: 33%;
     margin-left: 10px;
     color: #FCE0DD;
+    font-family: 'Pathway Gothic One', sans-serif;
 }
 
 .lablecontent {
-    font-size: 20px;
+    font-size: 18px;
     width: 66%;
+    font-family: 'Playfair Display', serif;
 }
 
 .commentgeneralbox {
@@ -296,8 +340,9 @@ body {
     padding: 0;
     display: block;
     font-size: 15px;
-    color: white;
+    color: #FCE0DD;
     width: 80%;
+    font-family: 'Pathway Gothic One', sans-serif;
 }
 
 
@@ -323,7 +368,8 @@ body {
     color: #343434;
     margin: 0;
     padding: 0;
-    font-size: 12px;
+    font-size: 18px;
+    font-family: 'Pathway Gothic One', sans-serif;
 }
 
 #commentusername{
@@ -338,6 +384,8 @@ body {
     background-color: white;
     outline: none;
     border-top-left-radius: 3px;
+    font-family: 'Playfair Display', serif;
+
 }
 
 #commentfield {
@@ -352,12 +400,7 @@ body {
     outline: none;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
-
-}
-
-#commentfield.break{
-    word-wrap: break-word;
-    word-break: break-all;
+    font-family: 'Playfair Display', serif;
 }
 
 #pastcomments {
@@ -379,9 +422,10 @@ body {
     padding: 0;
     padding-left: 10px;
     margin: 0;
-    font-size: 13px;
-    margin-top: 2px;
-    margin-bottom: 2px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    vertical-align: text-top;
+
 }
 
 .pastcommentuser {
@@ -390,10 +434,13 @@ body {
     color: #888888;
     word-break: normal;
     text-overflow: clip;
-    width: 20%;
+    min-width: 10%;
+    max-width: 50%;
     padding: 0;
-    margin-right: 5px;
-
+    margin-right: 15px;
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size: 13px;
+    vertical-align: text-top;
 }
 
 .passtcommenttext {
@@ -402,12 +449,17 @@ body {
     display: inline-block;
     width: 80%;
     word-break: normal;
+    padding-right: 5px;
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    vertical-align: text-top;
+
 }
 .commentline{
     height: 1px;
     border-bottom: 1px dotted #888888;
-    width: 90%;
+    width:70%;
     margin: 0;
     padding: 0;
-    margin-left: 5%;
+    margin-left: 15%;
 }
