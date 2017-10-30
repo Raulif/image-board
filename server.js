@@ -60,12 +60,9 @@ app.post('/upload', uploader.single('imageFile', 'username', 'imgtitle', 'imgdes
 });
 
 app.get('/home', (req, res) => {
-    const qShowImages = `SELECT image, id, title, created_at AS date FROM images`;
+    const qShowImages = `SELECT image, id, title, created_at AS date FROM images ORDER BY created_at DESC`;
     db.query(qShowImages).then((results) => {
         var images = results.rows;
-        images = images.sort(function(a,b) {
-            return new Date(b.date) - new Date(a.date)
-        })
         return res.json({
             images: images
         })

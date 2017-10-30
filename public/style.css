@@ -1,4 +1,4 @@
-body {
+ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -19,6 +19,7 @@ body {
     display: inline-flex;
     flex-direction: row;
 }
+
 
 #headtext{
     display: flex;
@@ -243,7 +244,7 @@ body {
     text-align: center;
     padding: 0;
     font-family: 'Pathway Gothic One', sans-serif;
-
+    box-shadow: 2px 2px 4px #888888;
 }
 
 .singleimageouterbox {
@@ -251,7 +252,7 @@ body {
     height: 87%;
     margin-left: 20px;
     margin-top: 80px;
-    border: 1px solid #888888;
+    border: 1px solid #343434;
     z-index: 50;
     display: inline-block;
 }
@@ -259,11 +260,12 @@ body {
 .sidepannel {
     width: 25%;
     height: 87%;
-    margin-top: 80px;
+    margin-top: 82px;
     display: inline-flex;
     vertical-align: top;
     flex-direction: column;
     justify-content: space-between;
+    margin-left: 10px;
 }
 
 .sidetitle {
@@ -273,7 +275,7 @@ body {
     display: block;
     font-size: 25px;
     color: white;
-    text-shadow: 1px 1px 2px #343434;
+    text-shadow: 3px 3px 5px #000000;
     width: 60%;
     text-align: center;
     font-family: 'Pathway Gothic One', sans-serif;
@@ -293,6 +295,8 @@ body {
     background-color: rgba(0, 0, 0, 0.8);
     margin-bottom: 40px;
     border-radius: 5px;
+    box-shadow: 1px 1px 3px #888888;
+
 }
 
 .line {
@@ -319,8 +323,11 @@ body {
 
 .lablecontent {
     font-size: 18px;
-    width: 66%;
+    width: 65%;
     font-family: 'Playfair Display', serif;
+    padding-right: 9px;
+    word-wrap: normal;
+    word-break: normal;
 }
 
 .commentgeneralbox {
@@ -331,6 +338,7 @@ body {
     width: 100%;
     border: 1px dotted #888888;
     border-radius: 5px;
+    box-shadow: 1px 1px 3px #888888;
 }
 
 .sidesubtitle {
@@ -407,7 +415,7 @@ body {
 #pastcomments {
     align-self: center;
     width: 97%;
-    height: 59%;
+    height: 55%;
     color: black;
     background-color: white;
     border-radius: 3px;
@@ -441,7 +449,7 @@ body {
     padding: 0;
     margin-right: 15px;
     font-family: 'Pathway Gothic One', sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     vertical-align: text-top;
 }
 
@@ -449,11 +457,12 @@ body {
     margin: 0;
     padding: 0;
     display: inline-block;
-    width: 80%;
+    max-width: 80%;
+    min-width: 50%;
     word-break: normal;
     padding-right: 5px;
     font-family: 'Playfair Display', serif;
-    font-size: 12px;
+    font-size: 13px;
     vertical-align: text-top;
 }
 .commentline{
@@ -465,28 +474,12 @@ body {
     margin-left: 15%;
 }
 
-@media screen and (max-width: 500px) {
-    body {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        overflow-x: hidden;
-        background-color: black;
-        display: flex;
-        flex-direction: column;
-    }
-
-    #headbar {
-        height: 65px;
-    }
+@media all and (max-width: 500px) {
 
     #main {
         display: flex;
         flex-direction: column;
-        width: 100%;
     }
 
-    .image {
-        width: 100%;
-    }
+
 }

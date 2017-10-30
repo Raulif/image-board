@@ -40,6 +40,7 @@
             var view = this
             this.model.on('change', function(req, res) {
                 view.render();
+                $('#uploadDiv').off()
                 var uploadModel = new UploadModel
                 uploadModel.on('success', function() {
                     view.model.fetch()
