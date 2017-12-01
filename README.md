@@ -37,13 +37,13 @@ My Image Board is called The Grey Area and it is dedicated exclusively to pictur
 
 The landing page shows the **full gallery of images** posted by all the users. The images are displayed using **CSS Grid**, with new rows being generated dynamically as new pictures are uploaded.
 
-![Front page](/Users/rauliglesias/Documents/Dev/image-board/public/readme-gifs/Front page.png)
+![Front page](https://github.com/Raulif/image-board/blob/master/public/readme-gifs/Front%20page.png)
 
 
 
 When the user clicks on a picture, a **full size view** of the picture is opened. The details of the picture (name of the user who uploaded the picture, as well as the title and description) are displayed on the top right corner. The user can read comments from other users and post his/her own comments.
 
-![Single image](/Users/rauliglesias/Documents/Dev/image-board/public/readme-gifs/Single image.png)
+![Single image](https://github.com/Raulif/image-board/blob/master/public/readme-gifs/Single%20image.png)
 
 The full size view has a transparent background with a blurry effect, so the gallery of pictures can still be seen behind it.
 
@@ -53,7 +53,7 @@ Back on the gallery view, the user can upload his/her picture by clicking on the
 
 When not in use, the uploader remains hidden off the top of the page.
 
-![Uploader](/Users/rauliglesias/Documents/Dev/image-board/public/readme-gifs/Uploader.png)
+![Uploader](https://github.com/Raulif/image-board/blob/master/public/readme-gifs/Uploader.png)
 
 
 
