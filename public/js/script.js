@@ -73,7 +73,7 @@
                 $('.galleryimagetitle').addClass('showimagetitle')
             },
 
-            'mouseleave .galleryimagetitle': function() {
+            'mouseleave .imagecontainer': function() {
                 $('.galleryimagetitle').removeClass('showimagetitle')
             }
         }

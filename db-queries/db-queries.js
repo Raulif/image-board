@@ -70,7 +70,7 @@ module.exports.showImage = (imageId) => {
 
                 return({
                     success: true,
-                    qResults: results.rows
+                    qResults: results.rows,
                     image: results.rows[0]
                 })
             })
